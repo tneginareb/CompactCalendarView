@@ -887,10 +887,12 @@ class CompactCalendarController {
                 if (currentCalender.get(Calendar.DAY_OF_MONTH) == day && isSameMonthAsCurrentCalendar && !isAnimatingWithExpose) {
                     drawDayRectangleIndicator(currentSelectedDayIndicatorStyle, canvas, xPosition, yPosition, currentSelectedDayBackgroundColor);
                     defaultCalenderTextColorToUse = currentSelectedDayTextColor;
+                    dayPaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
                 } else if (isSameYearAsToday && isSameMonthAsToday && todayDayOfMonth == day && !isAnimatingWithExpose) {
                     // TODO calculate position of circle in a more reliable way
                     drawDayRectangleIndicator(currentDayIndicatorStyle, canvas, xPosition, yPosition, currentDayBackgroundColor);
                     defaultCalenderTextColorToUse = currentDayTextColor;
+                    dayPaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
                 }
                 if (day <= 0) {
                     if (displayOtherMonthDays) {
@@ -909,15 +911,11 @@ class CompactCalendarController {
                 } else {
                     dayPaint.setStyle(Paint.Style.FILL);
                     dayPaint.setColor(defaultCalenderTextColorToUse);
-                    if (defaultCalenderTextColorToUse == currentDayTextColor) {
-                        dayPaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
-                        canvas.drawText(String.valueOf(day), xPosition, yPosition, dayPaint);
-                    } else {
-                        canvas.drawText(String.valueOf(day), xPosition, yPosition, dayPaint);
-                    }
+                    canvas.drawText(String.valueOf(day), xPosition, yPosition, dayPaint);
                 }
             }
         }
+
     }
 
     private void drawDayRectangleIndicator(int indicatorStyle, Canvas canvas, float x, float y, int color) {
