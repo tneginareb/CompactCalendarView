@@ -427,6 +427,7 @@ class CompactCalendarController {
             drawCalenderBackground(canvas);
             drawScrollableCalender(canvas);
         }
+        drawSeparatorLine(canvas);
     }
 
     private void drawCalendarWhileAnimatingIndicators(Canvas canvas) {
@@ -434,7 +435,7 @@ class CompactCalendarController {
         dayPaint.setStyle(Paint.Style.FILL);
         canvas.drawCircle(0, 0, growFactor, dayPaint);
         //canvas.drawRectangle(0.0f, 0.0f, 100.0f, 100.0f);
-//        canvas.drawRectangle(0.0f, 0.0f, 20.0f, 0.0f, dayPaint);
+//        canvas.f(0.0f, 0.0f, 20.0f, 0.0f, dayPaint);
         dayPaint.setStyle(Paint.Style.STROKE);
         dayPaint.setColor(Color.WHITE);
         drawScrollableCalender(canvas);
@@ -838,7 +839,6 @@ class CompactCalendarController {
 
     void drawMonth(Canvas canvas, Calendar monthToDrawCalender, int offset) {
         drawEvents(canvas, monthToDrawCalender, offset);
-
         //offset by one because we want to start from Monday
         int firstDayOfMonth = getDayOfWeek(monthToDrawCalender);
 
@@ -977,5 +977,20 @@ class CompactCalendarController {
         //void drawRect(float left, float top, float right, float bottom, Paint paint)
         canvas.drawRect(startX, startY, endX, endY + 2, dayPaint);
         canvas.drawLine(startX, startY, endX, endY, dayPaint);
+    }
+
+    private void drawSeparatorLine(Canvas canvas) {
+        final Paint mPaint = new Paint();
+        mPaint.setAntiAlias(true);
+        mPaint.setDither(true);
+        mPaint.setColor(Color.GRAY);
+        mPaint.setStyle(Paint.Style.STROKE);
+        //mPaint.setStrokeJoin(Paint.Join.ROUND);
+        //mPaint.setStrokeCap(Paint.Cap.ROUND);
+        mPaint.setStrokeWidth(1);
+
+        final float stopY = heightPerDay - 7.5f;
+        final float spaceOffset = textWidth / 1.5f;
+        canvas.drawLine(spaceOffset, stopY, width - spaceOffset, stopY, mPaint);
     }
 }
