@@ -1,5 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'idea'
+apply plugin: 'com.github.dcendents.android-maven'
+group = 'com.github.tneginareb'
 
 idea {
     module {
@@ -17,7 +19,6 @@ repositories {
 
 android {
     compileSdkVersion 24
-    buildToolsVersion '24.0.3'
 
     defaultConfig {
         minSdkVersion 11
