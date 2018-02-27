@@ -985,12 +985,11 @@ class CompactCalendarController {
         mPaint.setDither(true);
         mPaint.setColor(Color.GRAY);
         mPaint.setStyle(Paint.Style.STROKE);
-        //mPaint.setStrokeJoin(Paint.Join.ROUND);
-        //mPaint.setStrokeCap(Paint.Cap.ROUND);
-        mPaint.setStrokeWidth(1);
+        mPaint.setStrokeWidth(0.5f);
 
-        final float stopY = heightPerDay - 7.5f;
+        final float stopY = heightPerDay - heightPerDay / 3.5f;
         final float spaceOffset = textWidth / 1.5f;
         canvas.drawLine(spaceOffset, stopY, width - spaceOffset, stopY, mPaint);
+        canvas.drawLine(spaceOffset, 1, width - spaceOffset, 1, mPaint);
     }
 }

@@ -8,6 +8,7 @@
         android:id="@+id/compactcalendar_view"
         android:layout_width="fill_parent"
         android:layout_height="250dp"
+        android:layout_marginTop="40dp"
         app:compactCalendarBackgroundColor="#fff"
         app:compactCalendarCurrentDayBackgroundColor="@android:color/transparent"
         app:compactCalendarCurrentDayIndicatorStyle="fill_large_indicator"
