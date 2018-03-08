@@ -977,7 +977,6 @@ class CompactCalendarController {
         final float endX = x + textWidth / 2;
         final float endY = y;
 
-        System.out.println("startX: " + startX + "\nstartY: " + startY + "\nendX: " + endX + "\nendY: " + endY);
 
         //void drawRect(float left, float top, float right, float bottom, Paint paint)
         canvas.drawRect(startX, startY, endX, endY + 2, dayPaint);
