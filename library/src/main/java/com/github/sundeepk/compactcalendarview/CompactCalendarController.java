@@ -887,13 +887,20 @@ class CompactCalendarController {
                 if (currentCalender.get(Calendar.DAY_OF_MONTH) == day && isSameMonthAsCurrentCalendar && !isAnimatingWithExpose) {
                     drawDayRectangleIndicator(currentSelectedDayIndicatorStyle, canvas, xPosition, yPosition, currentSelectedDayBackgroundColor);
                     defaultCalenderTextColorToUse = currentSelectedDayTextColor;
-                    dayPaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
                 } else if (isSameYearAsToday && isSameMonthAsToday && todayDayOfMonth == day && !isAnimatingWithExpose) {
                     // TODO calculate position of circle in a more reliable way
                     drawDayRectangleIndicator(currentDayIndicatorStyle, canvas, xPosition, yPosition, currentDayBackgroundColor);
                     defaultCalenderTextColorToUse = currentDayTextColor;
-                    dayPaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
                 }
+
+                if (isSameYearAsToday && isSameMonthAsToday && todayDayOfMonth == day) {
+                    System.out.println("Hello 1: " + day);
+                    dayPaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                } else {
+                    System.out.println("Hello 2: " + day);
+                    dayPaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                }
+
                 if (day <= 0) {
                     if (displayOtherMonthDays) {
                         // Display day month before
