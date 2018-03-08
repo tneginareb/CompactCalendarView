@@ -894,10 +894,8 @@ class CompactCalendarController {
                 }
 
                 if (isSameYearAsToday && isSameMonthAsToday && todayDayOfMonth == day) {
-                    System.out.println("Hello 1: " + day);
                     dayPaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
                 } else {
-                    System.out.println("Hello 2: " + day);
                     dayPaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
                 }
 
