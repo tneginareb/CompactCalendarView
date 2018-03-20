@@ -109,6 +109,9 @@ class CompactCalendarController {
     private int otherMonthDaysTextColor;
     private TimeZone timeZone;
 
+    //Typefaces
+    private static Typeface boldTypeface, normalTypeface;
+
     /**
      * Only used in onDrawCurrentMonth to temporarily calculate previous month days
      */
@@ -168,6 +171,10 @@ class CompactCalendarController {
     }
 
     private void init(Context context) {
+
+        boldTypeface = Typeface.create(Typeface.SANS_SERIF, Typeface.BOLD);
+        normalTypeface = Typeface.create(Typeface.SANS_SERIF, Typeface.NORMAL);
+
         currentCalender = Calendar.getInstance(timeZone, locale);
         todayCalender = Calendar.getInstance(timeZone, locale);
         calendarWithFirstDayOfMonth = Calendar.getInstance(timeZone, locale);
@@ -187,7 +194,7 @@ class CompactCalendarController {
         dayPaint.setTextAlign(Paint.Align.CENTER);
         dayPaint.setStyle(Paint.Style.STROKE);
         dayPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
-        dayPaint.setTypeface(Typeface.SANS_SERIF);
+        dayPaint.setTypeface(normalTypeface);
         dayPaint.setTextSize(textSize);
         dayPaint.setColor(calenderTextColor);
         dayPaint.getTextBounds("31", 0, "31".length(), textSizeRect);
@@ -209,6 +216,7 @@ class CompactCalendarController {
 
         //just set a default growFactor to draw full calendar when initialised
         growFactor = Integer.MAX_VALUE;
+
     }
 
     private void initScreenDensityRelatedValues(Context context) {
@@ -875,11 +883,11 @@ class CompactCalendarController {
                 // first row, so draw the first letter of the day
                 if (shouldDrawDaysHeader) {
                     dayPaint.setColor(calenderTextColor);
-                    dayPaint.setTypeface(Typeface.DEFAULT_BOLD);
+                    dayPaint.setTypeface(boldTypeface);
                     dayPaint.setStyle(Paint.Style.FILL);
                     dayPaint.setColor(calenderTextColor);
                     canvas.drawText(dayColumnNames[dayColumn], xPosition, paddingHeight, dayPaint);
-                    dayPaint.setTypeface(Typeface.DEFAULT);
+//                    dayPaint.setTypeface(Typeface.DEFAULT);
                 }
             } else {
                 int day = ((dayRow - 1) * 7 + dayColumn + 1) - firstDayOfMonth;
@@ -894,9 +902,9 @@ class CompactCalendarController {
                 }
 
                 if (isSameYearAsToday && isSameMonthAsToday && todayDayOfMonth == day) {
-                    dayPaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    dayPaint.setTypeface(boldTypeface);
                 } else {
-                    dayPaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+                    dayPaint.setTypeface(normalTypeface);
                 }
 
                 if (day <= 0) {
